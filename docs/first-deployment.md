@@ -16,7 +16,8 @@ has approved the current machine, storage configuration, and estimated cost.
 1. Copy or clone this repository onto the instance.
 2. Run `scripts/bootstrap-autodl.sh` without arguments and review the dry-run.
 3. Run `scripts/bootstrap-autodl.sh --execute` only after the dry-run is approved.
-4. Put `HF_TOKEN` in `.env` or the process environment; never print or commit it.
+4. Put `HF_TOKEN` in `.env` or the process environment; never print or commit it. When the instance
+   cannot reach Hugging Face directly, set `HF_ENDPOINT=https://hf-mirror.com`.
 5. Run `scripts/check-runtime.py` and save its JSON output with the deployment log.
 6. Run `scripts/download-models.sh` and review the complete dry-run and byte total.
 7. Run `scripts/download-models.sh --execute`; every file must pass size and SHA256 verification.

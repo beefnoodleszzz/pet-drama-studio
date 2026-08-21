@@ -7,6 +7,7 @@ import json
 import os
 import sys
 import urllib.request
+import urllib.error
 from pathlib import Path
 
 def sha256_file(path: Path) -> str:
@@ -34,6 +35,7 @@ def main() -> int:
     repositories = data["repositories"]
     selected = [m for m in data["models"] if args.family is None or m["family"] == args.family]
     token = os.environ.get("HF_TOKEN", "")
+    endpoint = os.environ.get("HF_ENDPOINT", "https://huggingface.co").rstrip("/")
 
     for model in selected:
         target = model_root / model["target_path"]
@@ -56,7 +58,7 @@ def main() -> int:
             return 1
 
         repo = repositories[model["repository"]]
-        url = f"https://huggingface.co/{repo['repo_id']}/resolve/{repo['revision']}/{model['source_path']}"
+        url = f"{endpoint}/{repo['repo_id']}/resolve/{repo['revision']}/{model['source_path']}"
         if not args.execute:
             print(f"[dry-run] download {model['id']} ({expected_size} bytes) -> {target}")
             continue
@@ -66,16 +68,30 @@ def main() -> int:
 
         target.parent.mkdir(parents=True, exist_ok=True)
         partial = target.with_suffix(target.suffix + ".partial")
+        offset = partial.stat().st_size if partial.exists() else 0
         request = urllib.request.Request(url)
         if token:
             request.add_header("Authorization", f"Bearer {token}")
-        print(f"downloading {model['id']} -> {target}")
+        if offset:
+            request.add_header("Range", f"bytes={offset}-")
+        print(f"downloading {model['id']} -> {target} (resume={offset} bytes)", flush=True)
         try:
-            with urllib.request.urlopen(request) as response, partial.open("wb") as output:
-                while chunk := response.read(8 * 1024 * 1024):
-                    output.write(chunk)
-        except Exception:
-            partial.unlink(missing_ok=True)
+            with urllib.request.urlopen(request, timeout=60) as response:
+                if offset and response.status != 206:
+                    offset = 0
+                mode = "ab" if offset else "wb"
+                downloaded = offset
+                next_report = downloaded + 1024 * 1024 * 1024
+                with partial.open(mode) as output:
+                    while chunk := response.read(8 * 1024 * 1024):
+                        output.write(chunk)
+                        downloaded += len(chunk)
+                        if downloaded >= next_report:
+                            percent = downloaded * 100 / expected_size
+                            print(f"  {model['id']}: {percent:.1f}% ({downloaded}/{expected_size})", flush=True)
+                            next_report = downloaded + 1024 * 1024 * 1024
+        except (OSError, urllib.error.URLError) as exc:
+            print(f"download interrupted for {model['id']}: {exc}; partial file retained", file=sys.stderr)
             raise
         if partial.stat().st_size != expected_size or sha256_file(partial) != expected_hash:
             partial.unlink(missing_ok=True)

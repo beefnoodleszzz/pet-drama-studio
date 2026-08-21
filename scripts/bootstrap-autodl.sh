@@ -39,8 +39,9 @@ else
   printf 'ComfyUI checkout already exists; bootstrap will not update it automatically.\n'
 fi
 
-run_or_print "$execute" python3 -m venv "$studio_root/venv"
+run_or_print "$execute" python3 -m venv --system-site-packages "$studio_root/venv"
 run_or_print "$execute" "$studio_root/venv/bin/python" -m pip install --upgrade pip
+run_or_print "$execute" "$studio_root/venv/bin/python" -m pip install "torchaudio==2.8.0"
 run_or_print "$execute" "$studio_root/venv/bin/python" -m pip install -r "$PROJECT_ROOT/requirements-control.txt"
 run_or_print "$execute" "$studio_root/venv/bin/python" -m pip install -r "$comfyui_dir/requirements.txt"
 

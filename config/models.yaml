@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-21",
+  "policy": {
+    "default_download_mode": "dry-run",
+    "allow_unlisted_models": false,
+    "model_root": "/root/autodl-tmp/pet-drama-studio/ComfyUI/models",
+    "estimated_total_bytes": 116552368425,
+    "notes": [
+      "Only the approved FLUX.2 Dev FP8 Mixed and LTX 2.5 Distilled INT8 stack is allowed.",
+      "Accept the LTX 2.5 license and provide HF_TOKEN at runtime before downloading gated files."
+    ]
+  },
+  "repositories": {
+    "comfy_flux2": {
+      "repo_id": "Comfy-Org/flux2-dev",
+      "revision": "ab9055628ea245000e610f2aa2c96f4746093546",
+      "gated": false
+    },
+    "comfy_gemma4": {
+      "repo_id": "Comfy-Org/gemma-4",
+      "revision": "63d0f7c476756b88910170c1df75e2384ea1af31",
+      "gated": false
+    },
+    "ltx25": {
+      "repo_id": "Lightricks/LTX-2.5",
+      "revision": "6c7e5e573ac1667efc83407806fe9b0b93730e60",
+      "gated": true
+    }
+  },
+  "models": [
+    {
+      "id": "flux2-transformer",
+      "family": "flux2",
+      "repository": "comfy_flux2",
+      "source_path": "split_files/diffusion_models/flux2_dev_fp8mixed.safetensors",
+      "target_path": "diffusion_models/flux2_dev_fp8mixed.safetensors",
+      "size_bytes": 35455599592,
+      "sha256": "863a82e4ff950a42a6b0e80bea824828f129eb1a8fbbdbd9e8cb29859127b486",
+      "required": true
+    },
+    {
+      "id": "flux2-text-encoder",
+      "family": "flux2",
+      "repository": "comfy_flux2",
+      "source_path": "split_files/text_encoders/mistral_3_small_flux2_bf16.safetensors",
+      "target_path": "text_encoders/mistral_3_small_flux2_bf16.safetensors",
+      "size_bytes": 35584897447,
+      "sha256": "7d79902f60b1aeb3a6de2cfad02f4367b5e300a1387de3d03ac717cfa3df117c",
+      "required": true
+    },
+    {
+      "id": "flux2-vae",
+      "family": "flux2",
+      "repository": "comfy_flux2",
+      "source_path": "split_files/vae/flux2-vae.safetensors",
+      "target_path": "vae/flux2-vae.safetensors",
+      "size_bytes": 336213556,
+      "sha256": "d64f3a68e1cc4f9f4e29b6e0da38a0204fe9a49f2d4053f0ec1fa1ca02f9c4b5",
+      "required": true
+    },
+    {
+      "id": "ltx25-transformer",
+      "family": "ltx25",
+      "repository": "ltx25",
+      "source_path": "diffusion_models/ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+      "target_path": "diffusion_models/ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+      "size_bytes": 21504034224,
+      "sha256": "c4279eeff115cbeaca494bd2183e7d768c38fe85a184dc6afbb7159157c44334",
+      "required": true
+    },
+    {
+      "id": "ltx25-text-encoder",
+      "family": "ltx25",
+      "repository": "ltx25",
+      "source_path": "text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "target_path": "text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "size_bytes": 15372969374,
+      "sha256": "6ce688a0aa98a5fa36a9f1e6c3f42152a498cc2b53ee8c15674c64244f91487f",
+      "required": true
+    },
+    {
+      "id": "ltx25-prompt-enhancer",
+      "family": "ltx25",
+      "repository": "comfy_gemma4",
+      "source_path": "text_encoders/gemma4_e2b_it_int8_convrot.safetensors",
+      "target_path": "text_encoders/gemma4_e2b_it_int8_convrot.safetensors",
+      "size_bytes": 5199997904,
+      "sha256": "efeca0fcad2f863e5ed0a75e3af952b72bc963604c1dda6d20aee87a32b17566",
+      "required": true,
+      "enabled_by_default": false
+    },
+    {
+      "id": "ltx25-video-vae",
+      "family": "ltx25",
+      "repository": "ltx25",
+      "source_path": "vae/ltx-2.5-video-vae-bf16.safetensors",
+      "target_path": "vae/ltx-2.5-video-vae-bf16.safetensors",
+      "size_bytes": 1472223346,
+      "sha256": "847e14ca7f3355debca0cea4eaa24ac0fbcdf0061da054ac89ca638a869ddba3",
+      "required": true
+    },
+    {
+      "id": "ltx25-audio-vae",
+      "family": "ltx25",
+      "repository": "ltx25",
+      "source_path": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "target_path": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "size_bytes": 364866540,
+      "sha256": "c52733d37f6a7fb7949c3dc0fb468c6cb2169e4d836983a73babb9f0d54837a5",
+      "required": true
+    },
+    {
+      "id": "ltx25-duration-head",
+      "family": "ltx25",
+      "repository": "ltx25",
+      "source_path": "model_patches/ltx-2.5-duration-head-bf16.safetensors",
+      "target_path": "model_patches/ltx-2.5-duration-head-bf16.safetensors",
+      "size_bytes": 3843690,
+      "sha256": "2ec71e4206ed365d015f00c05a48caccfb0ee862986809d06ae376c09f5d9190",
+      "required": true
+    },
+    {
+      "id": "ltx25-spatial-upscaler",
+      "family": "ltx25",
+      "repository": "ltx25",
+      "source_path": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+      "target_path": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+      "size_bytes": 995778752,
+      "sha256": "eb5a71fe4068ee87ccdb1c3aa635e547ca76bd2d30ae20ae889f2c325c0677e8",
+      "required": true
+    },
+    {
+      "id": "ltx25-temporal-upscaler",
+      "family": "ltx25",
+      "repository": "ltx25",
+      "source_path": "latent_upscale_models/ltx-2.5-latent-temporal-upscaler-x2-bf16-1.0.safetensors",
+      "target_path": "latent_upscale_models/ltx-2.5-latent-temporal-upscaler-x2-bf16-1.0.safetensors",
+      "size_bytes": 261944000,
+      "sha256": "2bc3300f2b3c3c1834d72164fbf13a3b9fd73e5a741e8a2c3f4035f89a75c3fe",
+      "required": true,
+      "enabled_by_default": false
+    }
+  ]
+}

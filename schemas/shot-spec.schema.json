@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/beefnoodleszzz/pet-drama-studio/schemas/shot-spec.schema.json",
+  "title": "Pet Drama Studio ShotSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project_id", "episode_id", "shot_id", "duration_s", "aspect_ratio", "characters", "story_action", "camera", "status"],
+  "properties": {
+    "project_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "episode_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "shot_id": {"type": "string", "pattern": "^s[0-9]{3,}$"},
+    "duration_s": {"type": "number", "minimum": 1, "maximum": 10},
+    "aspect_ratio": {"enum": ["9:16"]},
+    "characters": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "location": {"type": "string"},
+    "story_action": {"type": "string", "minLength": 1},
+    "camera": {"type": "string", "minLength": 1},
+    "references": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "image_workflow": {"type": "string", "default": "flux2-multireference-v1"},
+    "video_workflow": {"type": "string", "default": "ltx25-i2v-distilled-v1"},
+    "candidates": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "image": {"type": "integer", "minimum": 1, "maximum": 12},
+        "video": {"type": "integer", "minimum": 1, "maximum": 8}
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "generate_audio": {"type": "boolean", "default": true},
+        "prompt_enhance": {"type": "boolean", "default": false},
+        "temporal_upscale_rounds": {"type": "integer", "minimum": 0, "maximum": 2, "default": 0}
+      }
+    },
+    "status": {"enum": ["planned", "image_generating", "image_review", "image_approved", "video_generating", "video_review", "approved", "failed"]}
+  }
+}

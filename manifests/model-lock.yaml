@@ -1,0 +1,10 @@
+schema_version: 1
+source: config/models.yaml
+verification:
+  algorithm: sha256
+  required_before_start: true
+  required_after_download: true
+repositories:
+  Comfy-Org/flux2-dev: ab9055628ea245000e610f2aa2c96f4746093546
+  Comfy-Org/gemma-4: 63d0f7c476756b88910170c1df75e2384ea1af31
+  Lightricks/LTX-2.5: 6c7e5e573ac1667efc83407806fe9b0b93730e60

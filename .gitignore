@@ -1,0 +1,25 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv/
+
+# Generated runtime data
+jobs/*/outputs/
+jobs/*/logs/
+characters/*/references/
+stories/*/renders/
+
+# Never commit model weights or secrets
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.onnx
+*.engine
+*.pem
+*.key
+secrets/

@@ -1,0 +1,30 @@
+schema_version: 1
+autodl:
+  local_root: /root/autodl-tmp/pet-drama-studio
+  reliable_root: /root/autodl-fs/pet-drama-studio
+  system_disk_gb: 30
+  data_disk_total_gb: 200
+  data_disk_free_tier_gb: 50
+  data_disk_paid_gb: 150
+  minimum_free_space_gb_before_job: 20
+paths:
+  comfyui: /root/autodl-tmp/pet-drama-studio/ComfyUI
+  models: /root/autodl-tmp/pet-drama-studio/ComfyUI/models
+  inputs: /root/autodl-tmp/pet-drama-studio/ComfyUI/input
+  outputs: /root/autodl-tmp/pet-drama-studio/ComfyUI/output
+  cache: /root/autodl-tmp/pet-drama-studio/cache
+  temp_frames: /root/autodl-tmp/pet-drama-studio/temp-frames
+  jobs_local: /root/autodl-tmp/pet-drama-studio/jobs
+  approved_outputs: /root/autodl-fs/pet-drama-studio/approved-outputs
+  jobs_reliable: /root/autodl-fs/pet-drama-studio/jobs
+  logs_reliable: /root/autodl-fs/pet-drama-studio/logs
+retention:
+  copy_before_shutdown:
+    - workflows
+    - manifests
+    - jobs
+    - logs
+    - approved-outputs
+  disposable:
+    - cache
+    - temp-frames

@@ -1,0 +1,19 @@
+schema_version: 1
+character_id: cat_mi
+display_name: 米米
+species: cat
+appearance:
+  body: small orange tabby cat
+  face: round face, amber eyes, white muzzle
+  distinguishing_marks: white front paws and a small notch on the left ear
+wardrobe:
+  default: teal collar with a round brass tag
+personality:
+  - clever
+  - mischievous
+  - expressive
+negative_constraints:
+  - no extra limbs
+  - no duplicated tail
+  - preserve orange tabby markings
+references: []

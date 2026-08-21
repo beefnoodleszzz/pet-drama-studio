@@ -1,0 +1,8 @@
+schema_version: 1
+policy:
+  prefer_core_nodes: true
+  auto_update_custom_nodes: false
+custom_nodes: []
+notes:
+  - Phase A uses ComfyUI core/native FLUX.2 and LTX 2.5 workflows.
+  - Add a custom node only after repository, Registry status, dependencies, and pinned commit are reviewed.

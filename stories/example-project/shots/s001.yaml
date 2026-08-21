@@ -1,0 +1,24 @@
+project_id: pet-comedy-001
+episode_id: e01
+shot_id: s001
+duration_s: 4
+aspect_ratio: "9:16"
+characters:
+  - cat_mi
+  - dog_dou
+location: living-room-v1
+story_action: 小猫偷偷藏起零食，小狗突然回头。
+camera: medium two-shot, eye level, subtle push-in
+references:
+  - characters/cat_mi/character.yaml
+  - characters/dog_dou/character.yaml
+image_workflow: flux2-multireference-v1
+video_workflow: ltx25-i2v-distilled-v1
+candidates:
+  image: 4
+  video: 3
+features:
+  generate_audio: true
+  prompt_enhance: false
+  temporal_upscale_rounds: 0
+status: planned

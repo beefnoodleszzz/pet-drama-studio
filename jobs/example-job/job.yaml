@@ -1,0 +1,26 @@
+schema_version: 1
+job_id: pet-comedy-001-e01-s001-image-001
+project_id: pet-comedy-001
+episode_id: e01
+shot_id: s001
+stage: image
+status: planned
+created_at: null
+started_at: null
+finished_at: null
+hardware:
+  gpu: null
+  system_ram_gb: null
+models: []
+parameters:
+  seed: null
+  width: 768
+  height: 1360
+  steps: 20
+metrics:
+  elapsed_seconds: null
+  peak_vram_mb: null
+  gpu_hours: null
+  estimated_cost_cny: null
+outputs: []
+error: null
